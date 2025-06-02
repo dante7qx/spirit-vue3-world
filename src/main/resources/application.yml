@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: spirit-vu3-elui
+  datasource:
+    url: jdbc:mysql://localhost:3307/spirit_vue3_elui?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: iamdante
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 20  # 最大连接数
+      minimum-idle: 5  # 最小空闲连接数
+      connection-test-query: SELECT 1  # 连接测试查询
+      pool-name: SpiritHikariCP  # 连接池名称
+      max-lifetime: 1800000  # 连接最大生命周期（毫秒）
+  sql:
+    init:
+      schema-locations: classpath:db/schema.sql  # 数据库初始化脚本路径
+      mode: always
+
+  mybatis-plus:
+    mapper-locations: classpath:mapper/*.xml  # mapper XML 文件路径
+    type-aliases-package: org.dante.vue3.entity  # 实体类包路径
+    configuration:
+      map-underscore-to-camel-case: true  # 开启驼峰命名转换
+      cache-enabled: false  # 关闭二级缓存
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 配置日志输出，方便调试
+    global-config:
+      db-config:
+        id-type: auto  # 主键策略（自增）
+        logic-delete-field: deleted  # 逻辑删除字段名（可选）
+        logic-delete-value: 1  # 逻辑已删除值（可选）
+        logic-not-delete-value: 0  # 逻辑未删除值（可选）
