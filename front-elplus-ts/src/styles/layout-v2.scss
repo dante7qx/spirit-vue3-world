@@ -1,0 +1,405 @@
+// 变量定义（语义化命名）
+$sidebar-width: 200px;
+$sidebar-collapsed-width: 64px;
+$navbar-height: 60px;
+$primary-color: #409eff;
+$navbar-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+$sidebar-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+$transition-time: 0.2s;
+
+// z-index 层级管理
+$z-index-sidebar: 1000;
+$z-index-mask: 999;
+$z-index-navbar: 99;
+
+// 定义完整的CSS变量
+:root {
+  // 亮色主题变量
+  --el-color-primary: #{$primary-color};
+  --el-bg-color-page: #f0f2f5;
+  --el-bg-color-overlay: #ffffff;
+  --el-text-color-primary: #303133;
+  --el-text-color-regular: #606266;
+  --el-text-color-secondary: #909399;
+  --el-border-color: #dcdfe6;
+  --el-border-color-light: #e4e7ed;
+  --el-fill-color-light: #f5f7fa;
+  --el-box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  --el-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+
+  // 侧边栏变量
+  --sidebar-bg: #304156;
+  --sidebar-text-color: #ffffff;
+  --menu-text-color: #bfcbd9;
+  --menu-active-text-color: #{$primary-color};
+  --menu-hover-bg-color: rgba(255, 255, 255, 0.1);
+  --menu-active-bg-color: rgba(64, 158, 255, 0.1);
+
+  // 导航栏变量
+  --navbar-bg: #ffffff;
+  --navbar-text-color: #303133;
+  --navbar-shadow: #{$navbar-shadow};
+}
+
+// 暗黑主题变量
+html.dark,
+.app-layout.dark {
+  --el-bg-color-page: #141414;
+  --el-bg-color-overlay: #141414;
+  --el-text-color-primary: #ffffff;
+  --el-text-color-regular: #cccccc;
+  --el-text-color-secondary: #909399;
+  --el-border-color: #4c4d4f;
+  --el-border-color-light: #414243;
+  --el-fill-color-light: #262727;
+  --el-box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --el-box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  // 暗黑模式侧边栏变量
+  --sidebar-bg: var(--el-menu-bg-color);
+  --sidebar-text-color: #ffffff;
+  --menu-text-color: #bfcbd9;
+  --menu-active-text-color: #{$primary-color};
+  --menu-hover-bg-color: rgba(255, 255, 255, 0.1);
+  --menu-active-bg-color: rgba(64, 158, 255, 0.2);
+
+  // 暗黑模式导航栏变量
+  --navbar-bg: #141414;
+  --navbar-text-color: #ffffff;
+  --navbar-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-layout {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+
+  // 全局过渡效果
+  * {
+    transition:
+            background-color $transition-time,
+            color $transition-time,
+            border-color $transition-time,
+            box-shadow $transition-time;
+  }
+
+  .el-container {
+    height: 100%;
+
+    .el-aside {
+      background-color: var(--sidebar-bg);
+      color: var(--sidebar-text-color);
+      transition: width $transition-time ease-in-out, background-color $transition-time;
+      box-shadow: $sidebar-shadow;
+      position: relative;
+      z-index: $z-index-sidebar;
+      display: flex;
+      flex-direction: column;
+
+      // 侧边栏折叠状态
+      &.is-collapsed {
+        width: $sidebar-collapsed-width !important;
+
+        .logo-text, .menu-item-text {
+          display: none;
+        }
+
+        .el-sub-menu__title span,
+        .el-menu-item span {
+          display: none;
+        }
+
+        .el-sub-menu__icon-arrow {
+          display: none;
+        }
+      }
+
+      .logo-area {
+        height: $navbar-height;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        border-bottom: 1px solid var(--el-border-color);
+        transition: all $transition-time;
+
+        .logo-icon {
+          font-size: 24px;
+          margin-right: 10px;
+          flex-shrink: 0;
+          color: var(--sidebar-text-color);
+        }
+
+        .logo-text {
+          font-size: 18px;
+          font-weight: bold;
+          white-space: nowrap;
+          transition: opacity $transition-time;
+          color: var(--sidebar-text-color);
+        }
+      }
+
+      .el-menu {
+        border-right: none;
+        flex: 1;
+        overflow-y: auto;
+        background-color: transparent;
+
+        .el-menu-item, .el-sub-menu__title {
+          color: var(--menu-text-color);
+          transition: all $transition-time;
+
+          &:hover {
+            color: var(--menu-active-text-color);
+            background-color: var(--menu-hover-bg-color);
+          }
+
+          &.is-active {
+            color: var(--menu-active-text-color);
+            background-color: var(--menu-active-bg-color) !important;
+          }
+        }
+
+        .el-sub-menu .el-menu-item {
+          &:hover {
+            background-color: var(--menu-hover-bg-color);
+          }
+
+          &.is-active {
+            background-color: var(--menu-active-bg-color) !important;
+          }
+        }
+      }
+
+      .collapse-btn {
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid var(--el-border-color-light);
+        cursor: pointer;
+        transition: all $transition-time;
+        color: var(--menu-text-color);
+
+        &:hover {
+          background-color: var(--menu-hover-bg-color);
+          color: var(--menu-active-text-color);
+        }
+
+        i {
+          transition: transform $transition-time;
+        }
+
+        &.is-collapsed i {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    // 主容器内层
+    .el-container {
+      flex-direction: column;
+      transition: margin-left $transition-time ease-in-out;
+
+      .el-header {
+        background-color: var(--navbar-bg);
+        color: var(--navbar-text-color);
+        height: $navbar-height;
+        line-height: $navbar-height;
+        box-shadow: var(--navbar-shadow);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+        z-index: $z-index-navbar;
+        position: relative;
+        transition: all $transition-time;
+
+        .toggle-btn {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          margin-right: 20px;
+          color: var(--navbar-text-color);
+          transition: color $transition-time;
+
+          &:hover {
+            color: var(--el-color-primary);
+          }
+        }
+
+        .toggle-theme {
+          margin-left: auto;
+          color: var(--navbar-text-color);
+          cursor: pointer;
+          transition: color $transition-time;
+
+          &:hover {
+            color: var(--el-color-primary);
+          }
+        }
+
+        // 面包屑导航
+        .breadcrumb {
+          margin-left: 20px;
+          color: var(--el-text-color-secondary);
+        }
+
+        // 右侧工具栏
+        .toolbar {
+          display: flex;
+          align-items: center;
+
+          & > * {
+            margin-left: 15px;
+            color: var(--navbar-text-color);
+            transition: color $transition-time;
+          }
+        }
+      }
+
+      .el-main {
+        background-color: var(--el-bg-color-page);
+        color: var(--el-text-color-regular);
+        padding: 15px;
+        height: calc(100% - #{$navbar-height});
+        overflow: auto;
+        position: relative;
+        transition: all $transition-time;
+
+        // 页面标题
+        .page-header {
+          margin-bottom: 20px;
+
+          h2 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--el-text-color-primary);
+            transition: color $transition-time;
+          }
+
+          .description {
+            color: var(--el-text-color-secondary);
+            margin-top: 5px;
+            font-size: 14px;
+            transition: color $transition-time;
+          }
+        }
+
+        // 内容卡片
+        .content-card {
+          background-color: var(--el-bg-color-overlay);
+          color: var(--el-text-color-primary);
+          box-shadow: var(--el-box-shadow-light);
+          border-radius: 4px;
+          margin-bottom: 20px;
+          padding: 20px;
+          transition: all $transition-time;
+
+          &__header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          &__title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--el-text-color-primary);
+            transition: color $transition-time;
+          }
+        }
+      }
+    }
+  }
+
+  // 滚动条样式
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(144, 147, 153, 0.3);
+    border-radius: 3px;
+    transition: background-color $transition-time;
+
+    &:hover {
+      background-color: rgba(144, 147, 153, 0.5);
+    }
+  }
+
+  // 暗黑模式滚动条
+  &.dark,
+  html.dark & {
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(144, 147, 153, 0.5);
+
+      &:hover {
+        background-color: rgba(144, 147, 153, 0.7);
+      }
+    }
+  }
+
+  // 响应式设计
+  @media screen and (max-width: 992px) {
+    .el-aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: $z-index-sidebar;
+      transform: translateX(0);
+      transition: transform $transition-time ease-in-out;
+
+      &.is-collapsed {
+        transform: translateX(-100%);
+      }
+    }
+
+    .mobile-menu-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: $z-index-mask;
+      display: none;
+      pointer-events: auto;
+      transition: opacity $transition-time;
+
+      &.active {
+        display: block;
+        opacity: 1;
+      }
+    }
+  }
+
+  // 打印样式
+  @media print {
+    .el-aside, .el-header {
+      display: none !important;
+    }
+
+    .el-main {
+      height: auto !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      background-color: transparent !important;
+    }
+
+    * {
+      color: #000 !important;
+      background: transparent !important;
+    }
+
+    .content-card {
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+      page-break-inside: avoid;
+    }
+  }
+}

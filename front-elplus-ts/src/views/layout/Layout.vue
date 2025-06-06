@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Expand, Fold } from '@element-plus/icons-vue'
+import {Expand, Fold } from '@element-plus/icons-vue'
 
 const isCollapse = ref(false)
 const toggleSidebar = () => {
@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
       </el-aside>
       <el-container>
         <el-header>
-          <!-- 顶部导航 -->
+          <!-- 隐藏侧边栏 -->
           <div class="toggle-btn" @click="toggleSidebar">
             <el-icon size="25">
               <component :is="sidebarIcon" />
@@ -41,6 +41,10 @@ onBeforeUnmount(() => {
 
           <!-- 面包屑导航 -->
           <Breadcrumb />
+
+          <!-- 主题切换 -->
+          <toggle-theme class="toggle-theme"/>
+
         </el-header>
         <el-main>
           <!-- 主内容区 -->
@@ -53,4 +57,5 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 @import "@/styles/layout.scss";
+//@import "@/styles/layout-v2.scss";
 </style>

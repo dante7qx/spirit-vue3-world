@@ -53,6 +53,7 @@ declare module 'vue' {
     Sidebar: typeof import('./views/layout/Sidebar.vue')['default']
     Space: typeof import('./views/element/basic/Space.vue')['default']
     Text: typeof import('./views/element/basic/Text.vue')['default']
+    ToggleTheme: typeof import('./views/layout/ToggleTheme.vue')['default']
     Views: typeof import('./views/index.vue')['default']
   }
 }

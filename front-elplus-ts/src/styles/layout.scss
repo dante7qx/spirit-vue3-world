@@ -3,13 +3,13 @@ $aside-width: 200px;
 $aside-collapsed-width: 64px;
 $header-height: 60px;
 $primary-color: #409eff;
-$dark-aside-bg: #304156;
-$light-aside-bg: #304156;
+$light-aside-bg: #ffffff;
+$dark-aside-bg: #141414;
 $header-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 $aside-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 $main-bg-light: #f0f2f5;
-$main-bg-dark: #0a0a0a;
-$transition-time: 0.3s;
+$main-bg-dark: #141414;
+$transition-time: 0.2s;
 
 .app-layout {
   height: 100vh;
@@ -22,8 +22,9 @@ $transition-time: 0.3s;
     height: 100%;
 
     .el-aside {
+      //background-color: var(--el-menu-bg-color);
       background-color: $light-aside-bg;
-      color: #fff;
+      color: var(--el-text-color-primary);
       transition: width $transition-time ease-in-out;
       box-shadow: $aside-shadow;
       position: relative;
@@ -31,6 +32,10 @@ $transition-time: 0.3s;
       display: flex;
       flex-direction: column;
       cursor: pointer;
+
+      html.dark & {
+        background-color: $dark-aside-bg;
+      }
 
       // 侧边栏折叠状态
       &.is-collapsed {
@@ -57,7 +62,7 @@ $transition-time: 0.3s;
         align-items: center;
         justify-content: center;
         padding: 0 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--el-border-color);
         transition: all $transition-time;
 
         .logo-icon {
@@ -82,16 +87,15 @@ $transition-time: 0.3s;
         background-color: transparent;
 
         .el-menu-item, .el-sub-menu__title {
-          color:  #ffffff;
+          color: var(--el-text-color-primary);
 
           &:hover {
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.1);
+            color: #409EFF;
           }
 
           &.is-active {
-            color: #fff;
-            background-color: $primary-color !important;
+            color: #409EFF;
+            background-color: var(--el-color-primary-light-9);
           }
         }
       }
@@ -100,12 +104,12 @@ $transition-time: 0.3s;
       .collapse-btn {
         padding: 10px;
         text-align: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid var(--el-border-color-light);
         cursor: pointer;
         transition: all $transition-time;
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: var(--el-fill-color-light);
         }
 
         i {
@@ -125,8 +129,8 @@ $transition-time: 0.3s;
 
       // 顶部导航栏样式
       .el-header {
-        background-color: #fff;
-        color: #333;
+        background-color: var(--el-bg-color);
+        color: var(--el-text-color-primary);
         height: $header-height;
         line-height: $header-height;
         box-shadow: $header-shadow;
@@ -144,10 +148,14 @@ $transition-time: 0.3s;
           height: 100%;
           margin-right: 20px; // 可选：给 toggle 按钮和面包屑之间加点间距
         }
+        .toggle-theme {
+          margin-left: auto;
+        }
 
         // 面包屑导航
         .breadcrumb {
           margin-left: 20px;
+          color: var(--el-text-color-secondary);
         }
 
         // 右侧工具栏
@@ -164,10 +172,16 @@ $transition-time: 0.3s;
       // 主内容区样式
       .el-main {
         background-color: $main-bg-light;
+        color: var(--el-text-color-regular);
         padding: 15px;
         height: calc(100% - #{$header-height});
         overflow: auto;
         position: relative;
+
+        html.dark & {
+          background-color: $main-bg-dark;
+        }
+
 
         // 页面标题
         .page-header {
@@ -176,11 +190,11 @@ $transition-time: 0.3s;
           h2 {
             margin: 0;
             font-size: 20px;
-            color: #333;
+            color: var(--el-text-color-primary);
           }
 
           .description {
-            color: #999;
+            color: var(--el-text-color-secondary);
             margin-top: 5px;
             font-size: 14px;
           }
@@ -188,9 +202,10 @@ $transition-time: 0.3s;
 
         // 内容卡片
         .content-card {
-          background: #fff;
+          background-color: var(--el-bg-color-overlay, #fff);
+          color: var(--el-text-color-primary);
+          box-shadow: var(--el-box-shadow-light);
           border-radius: 4px;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
           margin-bottom: 20px;
           padding: 20px;
 
@@ -204,6 +219,10 @@ $transition-time: 0.3s;
           &__title {
             font-size: 16px;
             font-weight: bold;
+          }
+
+          html.dark & {
+            box-shadow: var(--el-box-shadow-dark);
           }
         }
       }
@@ -223,34 +242,6 @@ $transition-time: 0.3s;
 
     &:hover {
       background-color: rgba(144, 147, 153, 0.5);
-    }
-  }
-
-  // 暗黑模式
-  &.dark {
-    .el-aside {
-      background-color: $dark-aside-bg;
-    }
-
-    .el-header {
-      background-color: #141414;
-      color: #fff;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .el-main {
-      background-color: $main-bg-dark;
-      color: #ccc;
-
-      .page-header h2 {
-        color: #fff;
-      }
-
-      .content-card {
-        background: #141414;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-        color: #ccc;
-      }
     }
   }
 

@@ -41,7 +41,8 @@ import {Edit, Loading, Search, Share} from "@element-plus/icons-vue";
 <style scoped lang="scss">
 .code-box {
   padding: 10px;
-  background-color: #f5f5f5;
+  background-color: var(--el-bg-color-page);
+  color: var(--el-text-color-regular);
   border-radius: 5px;
   margin-bottom: 20px;
 }
