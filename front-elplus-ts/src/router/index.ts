@@ -28,6 +28,15 @@ export const routes: RouteRecordRaw[] = [
           icon: 'Mug'
         },
       },
+      {
+        path: 'config',
+        name: 'Config',
+        component: () => import('@/views/element/global-config/index.vue'),
+        meta: {
+          title: '全局配置',
+          icon: 'Cpu'
+        },
+      },
     ],
   },
 ]

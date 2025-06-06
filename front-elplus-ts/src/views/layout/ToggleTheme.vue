@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import {Moon, Sunny} from "@element-plus/icons-vue";
 
-const THEME_KEY = 'spirit-theme'
-const THEME_DARK = 'dark'
-const THEME_LIGHT = 'light'
+const THEME_KEY = 'spirit-theme', THEME_DARK = 'dark', THEME_LIGHT = 'light'
 
 const isDark = ref(localStorage.getItem(THEME_KEY) === THEME_DARK)
-
 // 页面加载时初始化 html 的类名
 const html = document.documentElement
 if (isDark.value) {
@@ -16,7 +13,7 @@ if (isDark.value) {
 }
 
 const toggleTheme = () => {
-  isDark.value = !isDark.value
+  console.log(isDark.value)
   if (isDark.value) {
     html.classList.add(THEME_DARK)
     localStorage.setItem(THEME_KEY, THEME_DARK)

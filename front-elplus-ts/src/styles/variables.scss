@@ -1,11 +1,22 @@
-// 覆盖 Element Plus 内置 SCSS 变量
-$--color-primary: #409EFF;
-$--color-success: #67C23A;
-$--color-warning: #E6A23C;
-$--color-danger:  #F56C6C;
-$--color-info:    #909399;
+// Element Plus 主题变量定义
+// 使用 CSS 变量方式注入，避免 Sass Mixin 报错（Element Plus 2.9+ 已移除 set-css-var-value）
+@use "element-plus/theme-chalk/src/common/var.scss" as *;
 
-// 自定义项目的常用变量
+// 全局颜色配置（支持亮色 / 暗色模式）
+:root {
+  --el-color-primary: #409EFF;
+  --el-color-success: #67C23A;
+  --el-color-warning: #E6A23C;
+  --el-color-danger:  #F56C6C;
+  --el-color-info:    #909399;
+}
+
+// 暗色模式下主色调可微调
+html.dark {
+  --el-color-primary: #1890ff;
+}
+
+// 项目级 SCSS 变量（非 Element Plus 控制）
 $base-font-size: 14px;
 $base-padding: 16px;
 $header-height: 60px;
