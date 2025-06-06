@@ -1,0 +1,24 @@
+<script setup lang="ts">
+import { routeToMenu } from '@/api/layout/sidebar'
+import {routes} from "@/router"
+
+defineProps<{
+  isCollapse: boolean
+}>()
+
+const menus = routeToMenu(routes)
+
+</script>
+
+<template>
+  <el-menu
+    :router="true"
+    default-active="1"
+    :collapse="isCollapse">
+    <recursive-menu :menus="menus" />
+  </el-menu>
+</template>
+
+<style scoped>
+
+</style>

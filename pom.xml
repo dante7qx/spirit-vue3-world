@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.dante.vue3</groupId>
-	<artifactId>spirit-vu3-elui</artifactId>
+	<artifactId>spirit-vu3-world</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spirit-vu3-elui</name>
-	<description>Vu3  ElementPlus project for Spring Boot</description>
+	<name>spirit-vu3-world</name>
+	<description>Vu3 Frontend and Spring Boot API</description>
 	<properties>
 		<java.version>21</java.version>
 		<mybatis-plus.version>3.5.12</mybatis-plus.version>

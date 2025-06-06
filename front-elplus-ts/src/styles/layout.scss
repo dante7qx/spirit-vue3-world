@@ -1,0 +1,304 @@
+// 变量定义
+$aside-width: 200px;
+$aside-collapsed-width: 64px;
+$header-height: 60px;
+$primary-color: #409eff;
+$dark-aside-bg: #304156;
+$light-aside-bg: #304156;
+$header-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+$aside-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+$main-bg-light: #f0f2f5;
+$main-bg-dark: #0a0a0a;
+$transition-time: 0.3s;
+
+.app-layout {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+
+  .el-container {
+    height: 100%;
+
+    .el-aside {
+      background-color: $light-aside-bg;
+      color: #fff;
+      transition: width $transition-time ease-in-out;
+      box-shadow: $aside-shadow;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+
+      // 侧边栏折叠状态
+      &.is-collapsed {
+        width: $aside-collapsed-width !important;
+
+        .logo-text, .menu-item-text {
+          display: none;
+        }
+
+        .el-sub-menu__title span,
+        .el-menu-item span {
+          display: none;
+        }
+
+        .el-sub-menu__icon-arrow {
+          display: none;
+        }
+      }
+
+      // 侧边栏logo区域
+      .logo-area {
+        height: $header-height;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all $transition-time;
+
+        .logo-icon {
+          font-size: 24px;
+          margin-right: 10px;
+          flex-shrink: 0;
+        }
+
+        .logo-text {
+          font-size: 18px;
+          font-weight: bold;
+          white-space: nowrap;
+          transition: opacity $transition-time;
+        }
+      }
+
+      // 菜单样式
+      .el-menu {
+        border-right: none;
+        flex: 1;
+        overflow-y: auto;
+        background-color: transparent;
+
+        .el-menu-item, .el-sub-menu__title {
+          color:  #ffffff;
+
+          &:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+
+          &.is-active {
+            color: #fff;
+            background-color: $primary-color !important;
+          }
+        }
+      }
+
+      // 折叠按钮
+      .collapse-btn {
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: all $transition-time;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        i {
+          transition: transform $transition-time;
+        }
+
+        .is-collapsed & i {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    // 主容器内层
+    .el-container {
+      flex-direction: column;
+      transition: margin-left $transition-time ease-in-out;
+
+      // 顶部导航栏样式
+      .el-header {
+        background-color: #fff;
+        color: #333;
+        height: $header-height;
+        line-height: $header-height;
+        box-shadow: $header-shadow;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 20px;
+        z-index: 9;
+        position: relative;
+
+        .toggle-btn {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          margin-right: 20px; // 可选：给 toggle 按钮和面包屑之间加点间距
+        }
+
+        // 面包屑导航
+        .breadcrumb {
+          margin-left: 20px;
+        }
+
+        // 右侧工具栏
+        .toolbar {
+          display: flex;
+          align-items: center;
+
+          & > * {
+            margin-left: 15px;
+          }
+        }
+      }
+
+      // 主内容区样式
+      .el-main {
+        background-color: $main-bg-light;
+        padding: 15px;
+        height: calc(100% - #{$header-height});
+        overflow: auto;
+        position: relative;
+
+        // 页面标题
+        .page-header {
+          margin-bottom: 20px;
+
+          h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+          }
+
+          .description {
+            color: #999;
+            margin-top: 5px;
+            font-size: 14px;
+          }
+        }
+
+        // 内容卡片
+        .content-card {
+          background: #fff;
+          border-radius: 4px;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+          margin-bottom: 20px;
+          padding: 20px;
+
+          &__header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          &__title {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  // 滚动条样式
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(144, 147, 153, 0.3);
+    border-radius: 3px;
+    transition: background-color $transition-time;
+
+    &:hover {
+      background-color: rgba(144, 147, 153, 0.5);
+    }
+  }
+
+  // 暗黑模式
+  &.dark {
+    .el-aside {
+      background-color: $dark-aside-bg;
+    }
+
+    .el-header {
+      background-color: #141414;
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .el-main {
+      background-color: $main-bg-dark;
+      color: #ccc;
+
+      .page-header h2 {
+        color: #fff;
+      }
+
+      .content-card {
+        background: #141414;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        color: #ccc;
+      }
+    }
+  }
+
+  // 响应式设计
+  @media screen and (max-width: 992px) {
+    .el-aside {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1001;
+
+      &.is-collapsed {
+        transform: translateX(-100%);
+      }
+    }
+
+    .el-container > .el-container {
+      margin-left: 0 !important;
+    }
+
+    .mobile-menu-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  // 打印样式
+  @media print {
+    .el-aside, .el-header {
+      display: none !important;
+    }
+
+    .el-main {
+      height: auto !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      background-color: transparent !important;
+    }
+  }
+}
