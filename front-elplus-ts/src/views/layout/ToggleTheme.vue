@@ -2,25 +2,27 @@
 import {Moon, Sunny} from "@element-plus/icons-vue";
 
 const THEME_KEY = 'spirit-theme'
+const THEME_DARK = 'dark'
+const THEME_LIGHT = 'light'
 
-const isDark = ref(localStorage.getItem(THEME_KEY) === 'dark')
+const isDark = ref(localStorage.getItem(THEME_KEY) === THEME_DARK)
 
 // 页面加载时初始化 html 的类名
 const html = document.documentElement
 if (isDark.value) {
-  html.classList.add('dark')
+  html.classList.add(THEME_DARK)
 } else {
-  html.classList.remove('dark')
+  html.classList.remove(THEME_DARK)
 }
 
 const toggleTheme = () => {
   isDark.value = !isDark.value
   if (isDark.value) {
-    html.classList.add('dark')
-    localStorage.setItem(THEME_KEY, 'dark')
+    html.classList.add(THEME_DARK)
+    localStorage.setItem(THEME_KEY, THEME_DARK)
   } else {
-    html.classList.remove('dark')
-    localStorage.setItem(THEME_KEY, 'light')
+    html.classList.remove(THEME_DARK)
+    localStorage.setItem(THEME_KEY, THEME_LIGHT)
   }
 }
 </script>
