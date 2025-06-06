@@ -3,13 +3,13 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '',
+    path: '/',
     name: 'Index',
-    component: () => import('@/views/index.vue'), // 懒加载
+    component: () => import('@/views/index.vue'),
     meta: {
       title: '首页',
       icon: 'Sunny'
-    }
+    },
   },
   {
     path: '/element-plus',
@@ -21,7 +21,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'basic',
-        name: 'Index',
+        name: 'Basic',
         component: () => import('@/views/element/basic/index.vue'),
         meta: {
           title: '基础组件',
@@ -35,6 +35,11 @@ export const routes: RouteRecordRaw[] = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  console.log(from.path, ' to ', to.path) // 调试用
+  next()
 })
 
 export default router

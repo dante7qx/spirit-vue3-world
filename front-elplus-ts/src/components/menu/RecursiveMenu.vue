@@ -7,6 +7,15 @@ defineProps<{
   parentPath?: string
 }>()
 
+const normalizePath = (...paths: Array<string | undefined>) => {
+  const path = paths
+      .filter((path): path is string => path !== undefined && path !== '')
+      .join('/')
+      .replace(/\/+/g, '/') // 去除重复斜杠
+      .replace(/\/$/, '');  // 去除末尾斜杠
+  return path  === '' ? '/' : path
+}
+
 </script>
 
 <!-- 递归菜单树组件 -->
@@ -19,7 +28,7 @@ defineProps<{
       </template>
       <recursive-menu :menus="menu.children" :parent-path="menu.path"/>
     </el-sub-menu>
-    <el-menu-item v-else :index="`${parentPath ?? ''}/${menu.path}`" :key="`c_${idx}`">
+    <el-menu-item v-else :index="normalizePath(parentPath, menu.path)" :key="`c_${idx}`">
       <el-icon><component :is="loadIcon(menu.icon ?? 'Menu')" /></el-icon>
       <span>{{ menu.title }}</span>
     </el-menu-item>
