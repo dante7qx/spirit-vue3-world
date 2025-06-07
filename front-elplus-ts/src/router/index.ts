@@ -37,6 +37,15 @@ export const routes: RouteRecordRaw[] = [
           icon: 'Cpu'
         },
       },
+      {
+        path: 'form',
+        name: 'Form',
+        component: () => import('@/views/element/form/index.vue'),
+        meta: {
+          title: '表单组件',
+          icon: 'Document'
+        },
+      },
     ],
   },
 ]

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import GlobalI18n from './GlobalI18n.vue'
 import GlobalButton from './GlobalButton.vue'
+import GlobalLink from "@/views/element/global-config/GlobalLink.vue"
+import GlobalMessage from "@/views/element/global-config/GlobalMessage.vue"
 
 const activeName = ref('i18n')
 </script>
@@ -14,6 +16,12 @@ const activeName = ref('i18n')
     </el-collapse-item>
     <el-collapse-item title="按钮配置" name="button">
       <global-button />
+    </el-collapse-item>
+    <el-collapse-item title="链接配置" name="link">
+      <global-link />
+    </el-collapse-item>
+    <el-collapse-item title="消息配置" name="message">
+      <global-message />
     </el-collapse-item>
   </el-collapse>
 </template>
