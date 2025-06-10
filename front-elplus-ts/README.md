@@ -75,3 +75,34 @@ export default defineConfig({
 | 🔠 类型 / 接口名               | `PascalCase`                | `UserInfo`、`LoginForm`                    | TypeScript 标准       |
 | 🧪 枚举名 / 枚举成员             | `PascalCase` / `UPPER_CASE` | `UserRole.ADMIN`                          | 枚举名大驼峰，值全大写         |
 | 📦 环境变量名                  | `UPPER_SNAKE_CASE`          | `VITE_API_BASE_URL`                       | `.env` 文件标准         |
+
+### vue-i18n
+
+国际化插件，支持多语言切换。
+- **安装**
+```bash
+pnpm add vue-i18n@11
+```
+- **配置**
+```Typescript
+// src/i18n/index.ts
+import { createI18n } from 'vue-i18n'
+import messages from '@intlify/vite-plugin-vue-i18n/messages'
+const i18n = createI18n({
+  legacy: false,
+  locale: 'zh-CN',
+  messages, // 语言包
+})
+export default i18n
+```
+- **使用**
+```Typescript
+// src/App.vue
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+</script>
+<template>
+  <h1>{{ t('hello') }}</h1>
+</template>
+``` 

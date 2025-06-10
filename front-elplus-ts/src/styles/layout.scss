@@ -7,7 +7,7 @@ $light-aside-bg: #ffffff;
 $dark-aside-bg: #141414;
 $header-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 $aside-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-$main-bg-light: #f0f2f5;
+$main-bg-light: #ffffff;
 $main-bg-dark: #141414;
 $transition-time: 0.2s;
 
@@ -149,9 +149,6 @@ $transition-time: 0.2s;
           height: 100%;
           margin-right: 20px; // 可选：给 toggle 按钮和面包屑之间加点间距
         }
-        .toggle-theme {
-          margin-left: auto;
-        }
 
         // 面包屑导航
         .breadcrumb {
@@ -163,9 +160,11 @@ $transition-time: 0.2s;
         .toolbar {
           display: flex;
           align-items: center;
+          margin-left: auto;
 
           & > * {
-            margin-left: 15px;
+            margin-left: 10px;
+            margin-right: 20px;
           }
         }
       }

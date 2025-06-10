@@ -7,7 +7,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'Index',
     component: () => import('@/views/index.vue'),
     meta: {
-      title: '首页',
+      title: 'route.home',
       icon: 'Sunny'
     },
   },
@@ -15,7 +15,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/element-plus',
     name: 'ElementPlus',
     meta: {
-      title: 'Element Plus',
+      title: 'route.elementPlus',
       icon: 'ElementPlus'
     },
     children: [
@@ -24,7 +24,7 @@ export const routes: RouteRecordRaw[] = [
         name: 'Basic',
         component: () => import('@/views/element/basic/index.vue'),
         meta: {
-          title: '基础组件',
+          title: 'route.basic',
           icon: 'Mug'
         },
       },
@@ -33,7 +33,7 @@ export const routes: RouteRecordRaw[] = [
         name: 'Config',
         component: () => import('@/views/element/global-config/index.vue'),
         meta: {
-          title: '全局配置',
+          title: 'route.globalConfig',
           icon: 'Cpu'
         },
       },
@@ -42,7 +42,7 @@ export const routes: RouteRecordRaw[] = [
         name: 'Form',
         component: () => import('@/views/element/form/index.vue'),
         meta: {
-          title: '表单组件',
+          title: 'route.form',
           icon: 'Document'
         },
       },

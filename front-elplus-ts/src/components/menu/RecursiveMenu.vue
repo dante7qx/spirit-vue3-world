@@ -29,13 +29,13 @@ const normalizePath = (...paths: Array<string | undefined>) => {
     <el-sub-menu v-if="menu.children && menu.children.length > 0" :index="menu.path ?? ''" :key="`p_${idx}`">
       <template #title>
         <el-icon><component :is="loadIcon(menu.icon ?? 'Menu')" /></el-icon>
-        <span>{{ menu.title }}</span>
+        <span>{{ $t(menu.title as string) }}</span>
       </template>
       <recursive-menu :menus="menu.children" :parent-path="menu.path"/>
     </el-sub-menu>
     <el-menu-item v-else :index="normalizePath(parentPath, menu.path)" :key="`c_${idx}`">
       <el-icon><component :is="loadIcon(menu.icon ?? 'Menu')" /></el-icon>
-      <span>{{ menu.title }}</span>
+      <span>{{ $t(menu.title as string) }}</span>
     </el-menu-item>
   </template>
 </template>

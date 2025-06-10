@@ -1,5 +1,5 @@
 /**
- * 菜单对象
+ * 菜单 类型接口
  */
 export interface MenuItem {
   title: string

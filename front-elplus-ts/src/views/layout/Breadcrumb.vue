@@ -12,7 +12,7 @@ const breadcrumbs = computed(() => {
 <template>
   <el-breadcrumb separator="/">
     <el-breadcrumb-item v-for="item in breadcrumbs">
-      {{ item }}
+      {{ $t(item) }}
     </el-breadcrumb-item>
   </el-breadcrumb>
 </template>
