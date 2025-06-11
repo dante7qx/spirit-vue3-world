@@ -42,4 +42,18 @@ touch src/index.ts
 # 4. 编译和运行
 pnpm exec tsc
 node dist/index.js
+
+# 5. 优化开发流程, 使用 ts-node 和 nodemon 实现自动化
+pnpm add -D ts-node nodemon
+
+# 6. 配置 packjson.json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node dist/index.js",
+  "build": "tsc",
+  "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+}
+
+# 7. 启动开发模式
+pnpm dev
 ```
