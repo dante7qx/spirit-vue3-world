@@ -11,3 +11,17 @@ declare module '*.vue' {
     const component: DefineComponent<{}, {}, any>
     export default component
 }
+
+/**
+ * 类型声明 $t 函数
+ * 使用了 pinia 后，组件中的 $t()（来自 vue-i18n）在 IDE（如 VSCode）中报错，因为 TypeScript 无法识别 $t 是全局属性，除非你为它声明类型
+ *
+ */
+import 'vue'
+import {i18n} from '@/locales/index.ts'
+declare module 'vue' {
+    interface ComponentCustomProperties {
+        $t: typeof i18n.global.t
+        $i18n: typeof i18n.global
+    }
+}

@@ -11,6 +11,8 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.9.11",
+    "pinia": "^3.0.3",
+    "pinia-plugin-persistedstate": "^4.3.0",
     "vue": "^3.5.13",
     "vue-i18n": "^11.1.5",
     "vue-router": "^4.5.1"
@@ -19,6 +21,7 @@
     "@types/node": "^22.15.29",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",
+    "nanoid": "^5.1.5",
     "sass": "^1.89.1",
     "typescript": "~5.8.3",
     "unplugin-auto-import": "^19.3.0",

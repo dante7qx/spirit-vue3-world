@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import { useLoginUserStore } from '@/store/login-user.ts'
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -9,6 +10,16 @@ export const routes: RouteRecordRaw[] = [
     meta: {
       title: 'route.home',
       icon: 'Sunny'
+    },
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/Login.vue'),
+    meta: {
+      title: 'route.home',
+      icon: 'Sunny',
+      hidden: true,
     },
   },
   {
@@ -55,9 +66,17 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  console.log(from.path, ' to ', to.path) // 调试用
-  next()
+// 路由守卫控制访问权限
+router.beforeEach((to, _from, next) => {
+  const loginUserStore = useLoginUserStore()
+  const isAuthenticated = !!loginUserStore.accessToken
+  if(!isAuthenticated && to.name !== 'Login') {
+    next('/login')  // 未登录，跳转到登录页
+  } else if(isAuthenticated && to.name === 'Login') {
+    next('/') // 已登录，跳转到首页
+  } else {
+    next()  // 其他情况，继续导航
+  }
 })
 
 export default router

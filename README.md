@@ -5,8 +5,9 @@
 ### 一. Vue3 
 
 #### 1. Composition API
-
-
+```md
+created() { loadData() } ==> <script setup lang="ts"> loadData() </script>
+```
 
 ### 二. TypeScript
 
@@ -26,4 +27,22 @@ pnpm (pnpm = performant npm) 是一个高性能的 JavaScript 包管理器，功
 ```bash
 # 使用 pnpm 调用 create-vite 脚手架工具, 创建一个名为 my-vue-app 的新目录, 并使用 Vue3 + TypeScript 模板
 pnpm create vite my-vue-app --template vue-ts
+```
+
+- [Pinia](https://pinia.vuejs.org/zh)
+
+Pinia 是一个用于 Vue 的状态管理库，由 Vue 官方团队成员开发并维护。它旨在提供一个更简单、更直观的 API 来替代 Vuex（Vue 的官方状态管理库），特别是在 Vue 3 中使用时。Pinia 提供了模块化设计，允许你轻松地组织和共享应用中的状态，并且支持 TypeScript。
+
+```bash
+# 安装 Pinia
+pnpm add pinia
+# 安装持久化插件
+pnpm add pinia-plugin-persistedstate
+
+# main.ts 中配置
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate) 
+app.use(pinia)
 ```

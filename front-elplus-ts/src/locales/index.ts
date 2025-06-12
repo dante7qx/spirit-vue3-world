@@ -12,7 +12,7 @@ export type SupportedLocale = 'zh' | 'en'
 // 获取所有语言信息
 export const getLanguages = (): Record<SupportedLocale, string> => {
   return  {
-    zh: '简体中文',
+    zh: '中文',
     en: 'English'
   }
 }

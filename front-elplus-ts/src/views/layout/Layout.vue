@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {Expand, Fold } from '@element-plus/icons-vue'
-import {elementLocale} from "@/locales";
+import {Expand, Fold} from '@element-plus/icons-vue'
+import {elementLocale} from "@/locales"
 
 const isCollapse = ref(false)
 const toggleSidebar = () => {
@@ -48,8 +48,16 @@ onBeforeUnmount(() => {
             <div class="toolbar">
               <!-- 主题切换 -->
               <toggle-theme />
+
+              <!-- 全屏 -->
+              <fullscreen />
+
               <!-- 切换语言 -->
               <language-switcher />
+
+              <!-- 用户信息 -->
+              <user-profile />
+
             </div>
 
           </el-header>

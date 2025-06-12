@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { loadIcon } from '@/utils/spirit'
-import type { MenuItem } from "@/types/menu.ts";
+import type { MenuItem } from "@/types/menu.ts"
 
 // 递归组件必须有明确的组件名，除非文件名和组件名完全对应。（推荐显式指定）
 defineOptions({

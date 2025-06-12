@@ -1,9 +1,10 @@
 <script setup lang="ts">
-
+const route = useRoute()
 </script>
 
 <template>
-  <Layout />
+  <Login v-if="route.name === 'Login'" />
+  <Layout v-else/>
 </template>
 
 <style scoped>
