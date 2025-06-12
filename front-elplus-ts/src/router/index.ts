@@ -57,6 +57,15 @@ export const routes: RouteRecordRaw[] = [
           icon: 'Document'
         },
       },
+      {
+        path: 'table',
+        name: 'Table',
+        component: () => import('@/views/element/table/index.vue'),
+        meta: {
+          title: 'route.table',
+          icon: 'Grid'
+        },
+      },
     ],
   },
 ]

@@ -20,6 +20,7 @@ export interface I18nSchema {
     basic: string
     globalConfig: string
     form: string
+    table: string
   },
   // 消息
   message: {

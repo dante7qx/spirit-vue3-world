@@ -176,7 +176,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3>表单</h3>
+  <h3>表单 Form</h3>
   <el-text>表单组件，基于 Element Plus 的 Form 组件进行二次封装，提供了一些常用的表单组件。</el-text>
 
   <div style="margin-top: 20px;">

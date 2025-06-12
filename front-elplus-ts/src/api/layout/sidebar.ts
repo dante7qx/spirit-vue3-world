@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import type { MenuItem } from '@/types/menu'
+import type { MenuItem } from '@/types/components/menu.ts'
 
 /**
  * 将路由转换为菜单项

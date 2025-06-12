@@ -1,8 +1,10 @@
-import * as ElementIcons from '@element-plus/icons-vue'
+// 全局工具类
 
 /**
  * 动态加载 Element Plus Icon
  */
+import * as ElementIcons from '@element-plus/icons-vue'
+
 const loadIcon = (iconName: string) => {
   const icon = (ElementIcons as any)[iconName]
   if (!icon) {

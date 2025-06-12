@@ -4,7 +4,7 @@ import {useLoginUserStore} from "@/store/login-user.ts"
 import {ElMessageBox} from "element-plus"
 import router from "@/router"
 import {useI18n} from "vue-i18n"
-import type {LoginUser} from "@/types/user.ts"
+import type {LoginUser} from "@/types/login/auth-user.ts"
 
 const { t } = useI18n()
 const loginUser: LoginUser | null = useLoginUserStore().loginUser
@@ -40,10 +40,10 @@ const handleUserCommand = (command: string) => {
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="profile">
-          <span>{{ $t('user.profile') }}</span>
+          <span>{{ t('user.profile') }}</span>
         </el-dropdown-item>
         <el-dropdown-item divided command="logout">
-          <span>{{ $t('login.logout') }}</span>
+          <span>{{ t('login.logout') }}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -61,6 +61,9 @@ const handleUserCommand = (command: string) => {
     margin-left: 10px;
     font-size: 14px;
     color: #333;
+    .dark & {
+      color: #eff0fd;
+    }
   }
 }
 :deep(.el-dropdown) {

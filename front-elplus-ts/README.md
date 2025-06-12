@@ -37,6 +37,9 @@ pnpm add vue-router@4
 
 # 状态管理
 pnpm add pinia
+
+# http 请求
+pnpm add axios
 ```
 
 - `vite.config.ts`
@@ -58,6 +61,38 @@ export default defineConfig({
           resolvers: [ElementPlusResolver()],
       }),
   ],
+})
+```
+- **环境变量与模式**
+```md
+# .env 加载顺序
+.env.[mode].local > .env.[mode] > .env.local > .env
+
+# .env[local] 不会加入到 git 版本控制中
+```
+
+- `package.json`
+```json
+"scripts": {
+    "dev": "vite",                // 默认走 .env 或 .env.development
+    "build": "vue-tsc -b && vite build",  // 默认走 .env.production
+    "build:staging": "vite build --mode staging",  // 会加载 .env.staging 文件
+    "preview": "vite preview"
+}
+```
+
+- **配置反向代理 - vite.config.ts**
+```typescript
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://your-backend-api.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
 ```
 
@@ -105,4 +140,4 @@ const { t } = useI18n()
 <template>
   <h1>{{ t('hello') }}</h1>
 </template>
-``` 
+```

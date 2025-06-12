@@ -48,16 +48,15 @@ onBeforeUnmount(() => {
             <div class="toolbar">
               <!-- 主题切换 -->
               <toggle-theme />
-
+              <el-divider direction="vertical" />
               <!-- 全屏 -->
               <fullscreen />
-
+              <el-divider direction="vertical" />
               <!-- 切换语言 -->
               <language-switcher />
-
+              <el-divider direction="vertical" />
               <!-- 用户信息 -->
               <user-profile />
-
             </div>
 
           </el-header>

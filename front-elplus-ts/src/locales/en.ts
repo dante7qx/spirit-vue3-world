@@ -1,4 +1,4 @@
-import type {I18nSchema} from "@/types/i18n.ts"
+import type {I18nSchema} from "@/types/components/i18n.ts"
 
 const en: I18nSchema = {
   common: {
@@ -17,7 +17,8 @@ const en: I18nSchema = {
     elementPlus: 'Element Plus',
     basic: 'Basic',
     globalConfig: 'GlobalConfig',
-    form: 'Form'
+    form: 'Form',
+    table: 'Table'
   },
   message: {
     logout: 'Are you sure you want to log out?'

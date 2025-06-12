@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid'
-import type {AuthResult, LoginUser} from "@/types/user.ts"
+import type {AuthResult, LoginUser} from "@/types/login/auth-user.ts"
 
 // 模拟用户列表
 const userList: LoginUser[] = [

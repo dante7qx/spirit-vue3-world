@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import {currentLocale, getLanguages, setLanguage, type SupportedLocale} from "@/locales"
 import { useLoginUserStore } from '@/store/login-user.ts'
 import router from "@/router"
-import type {AuthResult} from "@/types/user.ts"
+import type {AuthResult} from "@/types/login/auth-user.ts"
 import {login} from "@/api/login/login.ts"
 
 const { t } = useI18n()
@@ -61,7 +61,7 @@ const persistLoginUser = (resp: AuthResult) => {
         <img src="@/assets/login-bg.jpg" alt="login banner" />
       </div>
       <div class="login-right">
-        <h2 class="login-title">{{ $t('login.signIn') }}</h2>
+        <h2 class="login-title">{{ t('login.signIn') }}</h2>
         <div class="social-icons">
           <el-radio-group v-model="currentLocale" size="small" fill="#67C23A" @change="switchLocale">
             <el-radio-button v-for="(value, key) in languages" :key="key" :label="value" :value="key" />
@@ -69,18 +69,18 @@ const persistLoginUser = (resp: AuthResult) => {
         </div>
         <el-form :model="form" :rules="rules" ref="formRef" class="login-form">
           <el-form-item prop="username">
-            <el-input v-model="form.username" :placeholder="$t('login.username')" />
+            <el-input v-model="form.username" :placeholder="t('login.username')" />
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model="form.password" type="password" :placeholder="$t('login.password')" show-password />
+            <el-input v-model="form.password" type="password" :placeholder="t('login.password')" show-password />
           </el-form-item>
-          <el-button type="warning" class="login-btn" @click="onLogin">{{ $t('login.signIn') }}</el-button>
+          <el-button type="warning" class="login-btn" @click="onLogin">{{ t('login.signIn') }}</el-button>
           <div class="login-options">
-            <el-checkbox v-model="form.remember">{{ $t('login.rememberMe') }}</el-checkbox>
-            <a href="#" class="forgot">{{ $t('login.forgotPassword') }}</a>
+            <el-checkbox v-model="form.remember">{{ t('login.rememberMe') }}</el-checkbox>
+            <a href="#" class="forgot">{{ t('login.forgotPassword') }}</a>
           </div>
           <div class="signup">
-            {{ $t('login.noAccountYet') }} <a href="#">{{ $t('login.signUp') }}</a>
+            {{ $t('login.noAccountYet') }} <a href="#">{{ t('login.signUp') }}</a>
           </div>
         </el-form>
       </div>

@@ -1,7 +1,7 @@
 import {type Composer, createI18n} from "vue-i18n"
 import zh from './zh'
 import en from './en'
-import type {I18nSchema} from "@/types/i18n.ts"
+import type {I18nSchema} from "@/types/components/i18n.ts"
 import type {Language} from 'element-plus/es/locale'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import enUs from 'element-plus/es/locale/lang/en'

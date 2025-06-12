@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {TreeNode} from "@/types/tree.ts"
+import type {TreeNode} from "@/types/components/tree.ts"
 
 defineProps<{
   data: TreeNode | null

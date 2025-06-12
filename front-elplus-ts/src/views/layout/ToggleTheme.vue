@@ -13,7 +13,6 @@ if (isDark.value) {
 }
 
 const toggleTheme = () => {
-  console.log(isDark.value)
   if (isDark.value) {
     html.classList.add(THEME_DARK)
     localStorage.setItem(THEME_KEY, THEME_DARK)
@@ -37,6 +36,6 @@ const toggleTheme = () => {
 
 <style scoped lang="scss">
 :deep(.el-switch__core) {
-  border: 1px solid var(--el-border-color) !important;
+  border: 1px solid #c5c5c5 !important;
 }
 </style>

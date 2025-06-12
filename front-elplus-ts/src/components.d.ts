@@ -87,6 +87,7 @@ declare module 'vue' {
     Scrollbar: typeof import('./views/element/basic/Scrollbar.vue')['default']
     Sidebar: typeof import('./views/layout/Sidebar.vue')['default']
     Space: typeof import('./views/element/basic/Space.vue')['default']
+    Table: typeof import('./views/element/table/index.vue')['default']
     Text: typeof import('./views/element/basic/Text.vue')['default']
     ToggleTheme: typeof import('./views/layout/ToggleTheme.vue')['default']
     TreeNodeSlot: typeof import('./components/tree/TreeNodeSlot.vue')['default']

@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import type {LoginUser} from "@/types/user.ts"
+import type {LoginUser} from "@/types/login/auth-user.ts"
 
 const STORE_KEY = 'spirit-login-user'
 

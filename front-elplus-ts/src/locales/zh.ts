@@ -1,4 +1,4 @@
-import type {I18nSchema} from "@/types/i18n.ts"
+import type {I18nSchema} from "@/types/components/i18n.ts"
 
 
 const zh: I18nSchema = {
@@ -18,7 +18,8 @@ const zh: I18nSchema = {
     elementPlus: 'Element Plus',
     basic: '基础组件',
     globalConfig: '全局配置',
-    form: '表单组件'
+    form: '表单组件',
+    table: '表格组件'
   },
   message: {
     logout: '你确定要退出登录吗？'
