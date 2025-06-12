@@ -7,7 +7,7 @@ import {useI18n} from "vue-i18n"
 import type {LoginUser} from "@/types/user.ts"
 
 const { t } = useI18n()
-const loginUser:  LoginUser = useLoginUserStore().loginUser
+const loginUser: LoginUser | null = useLoginUserStore().loginUser
 
 const handleUserCommand = (command: string) => {
   if (command === 'profile') {
@@ -30,9 +30,13 @@ const handleUserCommand = (command: string) => {
 </script>
 
 <template>
-  <el-dropdown @command="handleUserCommand" placement="bottom-start">
-    <el-avatar :icon="UserFilled" size="small" :src="loginUser.avatar">
-    </el-avatar>
+  <el-dropdown @command="handleUserCommand" placement="bottom">
+    <div class="box-avatar">
+      <el-avatar :icon="UserFilled" size="default" :src="loginUser != null ? loginUser.avatar : ''" />
+      <el-text class="user-profile">
+        <b>{{ loginUser != null ? loginUser.nickname : '暂无昵称' }}</b>
+      </el-text>
+    </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="profile">
@@ -44,8 +48,22 @@ const handleUserCommand = (command: string) => {
       </el-dropdown-menu>
     </template>
   </el-dropdown>
+
 </template>
 
 <style scoped lang="scss">
+.box-avatar {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
+  .user-profile {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+}
+:deep(.el-dropdown) {
+  border: none;
+}
 </style>
