@@ -3,7 +3,6 @@ import axios, {AxiosError, AxiosHeaders} from 'axios'
 import { useLoginUserStore } from '@/store/login-user.ts'
 
 // 创建 axios 实例，使用 fetch adapter
-console.log(import.meta.env.VITE_API_BASE_URL)
 const http = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 15000,   // 请求超时时间, 单位毫秒
@@ -44,7 +43,9 @@ http.interceptors.request.use(config => {
 
 // 响应拦截器
 http.interceptors.response.use(
-    res => res.data,
+    res => {
+      return res.data
+    },
     (error: AxiosError) => {
       // 根据错误类型进行统一处理
       if (error.response) {

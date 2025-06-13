@@ -1,6 +1,7 @@
 package org.dante.vue3.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -49,12 +50,14 @@ public class SysUser {
     private String createBy;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     @TableField(value = "update_by", fill = FieldFill.UPDATE)
     private String updateBy;
 
     @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateTime;
 
     /**

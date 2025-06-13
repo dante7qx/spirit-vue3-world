@@ -1,4 +1,5 @@
-import http from '@/utils/http'
+import http from '@/api/http.ts'
+import type {AjaxResult, PaginatedResult} from "@/types/api/types.ts"
 
 /**
  * 封装的RestApi类
@@ -7,7 +8,12 @@ import http from '@/utils/http'
  * @param CreateDTO 表示新增数据的类型
  * @param UpdateDTO 表示更新数据的类型
  */
-export class RestApi<T, CreateDTO = Partial<T>, UpdateDTO = Partial<T>> {
+export class RestApi<
+    T,
+    CreateDTO = Partial<T>,
+    UpdateDTO = Partial<T>,
+    QueryDTO = any
+> {
   // 参数属性
   constructor(private basePath: string) {}
   /*
@@ -17,25 +23,32 @@ export class RestApi<T, CreateDTO = Partial<T>, UpdateDTO = Partial<T>> {
     this.basePath = basePath
   }
   */
-
-  getList(params?: any): Promise<T[]> {
-    return http.get(this.basePath, { params })
+  page(query?: QueryDTO): Promise<PaginatedResult<T>> {
+    return http.post(`${this.basePath}/page`, query)
   }
 
-  getOne(id: number | string): Promise<T> {
-    return http.get(`${this.basePath}/${id}`)
+  list(query?: QueryDTO): Promise<AjaxResult<T>> {
+    return http.post(`${this.basePath}/list`, { query })
+  }
+
+  get(id: number | string): Promise<T> {
+    return http.post(`${this.basePath}/${id}`)
   }
 
   create(data: CreateDTO): Promise<T> {
-    return http.post(this.basePath, data)
+    return http.post(`${this.basePath}/edit`, data)
   }
 
-  update(id: number | string, data: UpdateDTO): Promise<T> {
+  update(data: UpdateDTO): Promise<T> {
+    return http.post(`${this.basePath}/edit`, data)
+  }
+
+  updateWithId(id: number | string, data: UpdateDTO): Promise<T> {
     return http.post(`${this.basePath}/${id}`, data)
   }
 
   remove(id: number | string): Promise<void> {
-    return http.post(`${this.basePath}/${id}`)
+    return http.post(`${this.basePath}/del/${id}`)
   }
 }
 

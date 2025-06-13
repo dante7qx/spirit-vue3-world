@@ -4,7 +4,7 @@ spring:
   application:
     name: spirit-vu3-elui
   datasource:
-    url: jdbc:mysql://localhost:3307/spirit_vue3_elui?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3307/spirit_vue3_world?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: iamdante
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -18,7 +18,7 @@ spring:
   sql:
     init:
       schema-locations: classpath:db/schema.sql  # 数据库初始化脚本路径
-      mode: always
+      mode: never  # 初始化模式，这里设置为 never 表示不初始化数据库
 
   mybatis-plus:
     mapper-locations: classpath:mapper/*.xml  # mapper XML 文件路径
