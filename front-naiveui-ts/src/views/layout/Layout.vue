@@ -10,7 +10,8 @@ import {
 } from '@vicons/ionicons5'
 import {RouterLink} from "vue-router"
 
-const collapsed = ref(true)
+// 侧边栏折叠状态
+const collapsed = ref(false)
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
@@ -103,7 +104,17 @@ const menuOptions: MenuOption[] = [
   <n-flex>
     <n-layout style="height: 100vh">
       <n-layout-header style="height: 64px; padding: 24px" bordered>
-        颐和园路
+        <!-- logo区域 -->
+        <header-logo />
+
+        <!-- 导航区域 -->
+
+        <!-- 工具栏 -->
+        <!-- 语言切换 -->
+        <!-- 全屏 -->
+        <!-- 主题切换 -->
+        <!-- 工具栏 -->
+
       </n-layout-header>
 
       <n-layout position="absolute" style="top: 64px; bottom: 64px" has-sider>

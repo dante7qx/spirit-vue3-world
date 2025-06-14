@@ -8,9 +8,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    HeaderLogo: typeof import('./views/layout/HeaderLogo.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Index: typeof import('./views/home/Index.vue')['default']
     Layout: typeof import('./views/layout/Layout.vue')['default']
+    NAnchorLink: typeof import('naive-ui')['NAnchorLink']
     NButton: typeof import('naive-ui')['NButton']
     NFlex: typeof import('naive-ui')['NFlex']
     NH2: typeof import('naive-ui')['NH2']
@@ -22,6 +24,7 @@ declare module 'vue' {
     NMenu: typeof import('naive-ui')['NMenu']
     NSpace: typeof import('naive-ui')['NSpace']
     NSwitch: typeof import('naive-ui')['NSwitch']
+    NText: typeof import('naive-ui')['NText']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
