@@ -9,6 +9,7 @@ import {
   WineOutline as WineIcon
 } from '@vicons/ionicons5'
 import {RouterLink} from "vue-router"
+import ToggleTheme from "@/views/layout/ToggleTheme.vue";
 
 // 侧边栏折叠状态
 const collapsed = ref(false)
@@ -104,16 +105,21 @@ const menuOptions: MenuOption[] = [
   <n-flex>
     <n-layout style="height: 100vh">
       <n-layout-header style="height: 64px; padding: 24px" bordered>
+        <n-flex justify="space-between" size="large">
         <!-- logo区域 -->
         <header-logo />
 
         <!-- 导航区域 -->
 
         <!-- 工具栏 -->
-        <!-- 语言切换 -->
-        <!-- 全屏 -->
-        <!-- 主题切换 -->
-        <!-- 工具栏 -->
+        <div>
+          <!-- 主题切换 -->
+          <toggle-theme />
+          <!-- 语言切换 -->
+
+          <!-- 全屏 -->
+        </div>
+        </n-flex>
 
       </n-layout-header>
 
