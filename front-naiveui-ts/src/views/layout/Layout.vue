@@ -116,6 +116,7 @@ const menuOptions: MenuOption[] = [
           <!-- 主题切换 -->
           <toggle-theme />
           <!-- 语言切换 -->
+          <toggle-locale />
 
           <!-- 全屏 -->
         </div>
