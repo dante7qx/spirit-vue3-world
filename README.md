@@ -11,6 +11,10 @@ created() { loadData() } === <script setup lang="ts"> loadData() </script>
 
 ### 二. TypeScript
 
+- 学习资料：
+- <a href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html" target="_blank">TypeScript 官网</a>
+- <a href="https://ts.xcatliu.com/" target="_blank">入门教程</a>
+
 ### 三. Vite & pnpm
 
 - <a href="https://cn.vite.dev/" target="_blank">Vite</a>
