@@ -18,7 +18,8 @@ const en: I18nSchema = {
     basic: 'Basic',
     globalConfig: 'GlobalConfig',
     form: 'Form',
-    table: 'Table'
+    table: 'Table',
+    codegen: 'Code Generator'
   },
   message: {
     logout: 'Are you sure you want to log out?'

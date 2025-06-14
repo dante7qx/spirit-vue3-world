@@ -19,7 +19,8 @@ const zh: I18nSchema = {
     basic: '基础组件',
     globalConfig: '全局配置',
     form: '表单组件',
-    table: '表格组件'
+    table: '表格组件',
+    codegen: '代码生成器'
   },
   message: {
     logout: '你确定要退出登录吗？'

@@ -12,6 +12,7 @@ declare module 'vue' {
     Border: typeof import('./views/element/basic/Border.vue')['default']
     Breadcrumb: typeof import('./views/layout/Breadcrumb.vue')['default']
     Button: typeof import('./views/element/basic/Button.vue')['default']
+    CodeGenerator: typeof import('./views/generator/CodeGenerator.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']

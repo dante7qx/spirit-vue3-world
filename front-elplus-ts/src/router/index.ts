@@ -68,6 +68,25 @@ export const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  {
+    path: '/codegen',
+    name: 'codegen',
+    meta: {
+      title: 'route.codegen',
+      icon: 'DataBoard'
+    },
+    children: [
+      {
+        path: 'db',
+        name: 'db',
+        component: () => import('@/views/generator/CodeGenerator.vue'),
+        meta: {
+          title: '数据源',
+          icon: 'Mug'
+        },
+      },
+    ]
+  },
 ]
 
 const router = createRouter({

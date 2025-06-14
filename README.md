@@ -6,7 +6,7 @@
 
 #### 1. Composition API
 ```md
-created() { loadData() } ==> <script setup lang="ts"> loadData() </script>
+created() { loadData() } === <script setup lang="ts"> loadData() </script>
 ```
 
 ### 二. TypeScript
@@ -17,6 +17,10 @@ created() { loadData() } ==> <script setup lang="ts"> loadData() </script>
 
 Vite 是一个由 Evan You（Vue.js 作者）主导开发的前端构建工具，它的目标是提供更快、更轻量的开发体验，尤其适用于现代前端框架如 Vue、React 等。
 使用 Rollup 作为生产构建工具，结合 esbuild 的预构建能力，实现高效打包、Tree Shaking、代码分割等优化。
+```bash
+# 创建项目, 创建一个名为 my-app-name 的新目录, 并使用 Vue3 + TypeScript 模板
+pnpm create vite my-app-name --template vue-ts
+```
 
 - pnpm
 

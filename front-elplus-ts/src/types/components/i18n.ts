@@ -21,6 +21,7 @@ export interface I18nSchema {
     globalConfig: string
     form: string
     table: string
+    codegen: string
   },
   // 消息
   message: {
