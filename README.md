@@ -7,6 +7,9 @@
 #### 1. Composition API
 ```md
 created() { loadData() } === <script setup lang="ts"> loadData() </script>
+
+vue3 推荐使用
+onMounted(() => {})
 ```
 
 ### 二. TypeScript
