@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import {currentTheme, currentLocale, currentDateLocale} from "@/utils/spirit.ts"
+import {
+  currentTheme,
+  currentLocale,
+  currentDateLocale,
+} from '@/utils/spirit.ts'
 </script>
 
 <template>
-  <n-config-provider :theme="currentTheme" :locale="currentLocale" :date-locale="currentDateLocale">
+  <n-config-provider
+    :theme="currentTheme"
+    :locale="currentLocale"
+    :date-locale="currentDateLocale"
+  >
     <layout />
   </n-config-provider>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
