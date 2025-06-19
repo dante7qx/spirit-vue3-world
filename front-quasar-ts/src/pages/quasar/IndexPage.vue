@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import StyleIdentity from 'pages/quasar/StyleIdentity.vue'
 import SpiritGrid from 'pages/quasar/SpiritGrid.vue'
 import SpiritLayout from 'pages/quasar/SpiritLayout.vue'
+import GalleryYoutube from 'pages/quasar/GalleryYoutube.vue'
+import VueComponent from 'pages/quasar/vue/VueComponent.vue'
 
 const tab = ref('style')
 </script>
@@ -27,12 +29,15 @@ const tab = ref('style')
           <q-item clickable @click="tab = 'grid'">
             <q-item-section>Grid</q-item-section>
           </q-item>
-
           <q-item clickable @click="tab = 'layout'">
             <q-item-section>Layout</q-item-section>
           </q-item>
+          <q-item clickable @click="tab = 'youtube'">
+            <q-item-section>Youtube</q-item-section>
+          </q-item>
         </q-list>
       </q-btn-dropdown>
+      <q-tab name="vue" icon="widgets" label="Vue 组件" />
     </q-tabs>
 
     <q-separator />
@@ -48,6 +53,14 @@ const tab = ref('style')
 
       <q-tab-panel name="layout">
         <spirit-layout />
+      </q-tab-panel>
+
+      <q-tab-panel name="youtube">
+        <gallery-youtube />
+      </q-tab-panel>
+
+      <q-tab-panel name="vue">
+        <vue-component />
       </q-tab-panel>
     </q-tab-panels>
   </div>

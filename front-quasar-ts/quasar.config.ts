@@ -47,7 +47,7 @@ export default defineConfig((ctx) => {
         // extendTsConfig (tsConfig) {}
       },
 
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -63,7 +63,12 @@ export default defineConfig((ctx) => {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf (viteConf) {
+        viteConf.server = {
+          ...viteConf.server,
+          allowedHosts: ['self', 'localhost', '782a17c9.r21.cpolar.top'],
+        }
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
@@ -119,7 +124,9 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: [
+        'Notify',
+      ],
     },
 
     // animations: 'all', // --- includes all animations
