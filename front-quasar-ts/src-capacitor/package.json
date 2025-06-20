@@ -1,0 +1,13 @@
+{
+  "name": "front-quasar-ts",
+  "version": "0.0.1",
+  "description": "Spirit Quasar Project",
+  "author": "dante7qx <sunchao.0129@163.comm>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/ios": "^7.4.0"
+  }
+}

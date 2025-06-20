@@ -66,6 +66,7 @@ export default defineConfig((ctx) => {
       extendViteConf (viteConf) {
         viteConf.server = {
           ...viteConf.server,
+          // port: 5135,
           allowedHosts: ['self', 'localhost', '782a17c9.r21.cpolar.top'],
         }
       },
@@ -111,7 +112,9 @@ export default defineConfig((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
     framework: {
-      config: {},
+      config: {
+        dark: "auto",
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack

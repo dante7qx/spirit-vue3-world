@@ -36,5 +36,16 @@ npm run format
 quasar build
 ```
 
+### 使用 Capacitor 打包移动 App
+```bash
+quasar mode add capacitor
+# 构建生产代码
+quasar build -m capacitor -T ios
+quasar build -m capacitor -T android
+# 打开原生项目
+quasar capacitor open android
+quasar capacitor open ios
+```
+
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).

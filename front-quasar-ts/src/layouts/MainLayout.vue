@@ -5,6 +5,7 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
         <q-toolbar-title> Quasar App v{{ $q.version }}</q-toolbar-title>
         <q-btn flat color="white" label="登录" />
+        <q-btn flat icon="nightlight_round" @click="toggleTheme"/>
       </q-toolbar>
     </q-header>
 
@@ -33,7 +34,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useQuasar } from 'quasar'
 import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue'
+
+const $q = useQuasar()
 
 const linksList: EssentialLinkProps[] = [
   {
@@ -84,5 +88,9 @@ const leftDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
+function toggleTheme() {
+  $q.dark.toggle()
 }
 </script>
