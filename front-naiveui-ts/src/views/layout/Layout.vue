@@ -5,8 +5,7 @@ import {
   ArrowForwardOutline,
   ArrowBackOutline,
   BookOutline as BookIcon,
-  PersonOutline as PersonIcon,
-  WineOutline as WineIcon
+  WineOutline as WineIcon, Apps
 } from '@vicons/ionicons5'
 import {RouterLink} from "vue-router"
 import ToggleTheme from "@/views/layout/ToggleTheme.vue";
@@ -32,72 +31,17 @@ const menuOptions: MenuOption[] = [
     icon: renderIcon(BookIcon)
   },
   {
-    label: '1973年的弹珠玩具',
+    label: '代码生成器',
     key: 'pinball-1973',
-    icon: renderIcon(BookIcon),
-    disabled: true,
+    icon: renderIcon(WineIcon),
     children: [
       {
-        label: '鼠',
-        key: 'rat'
+        label: '数据源',
+        key: 'rat',
+        icon: renderIcon(Apps)
       }
     ]
   },
-  {
-    label: '寻羊冒险记',
-    key: 'a-wild-sheep-chase',
-    disabled: true,
-    icon: renderIcon(BookIcon)
-  },
-  {
-    label: '舞，舞，舞',
-    key: 'dance-dance-dance',
-    icon: renderIcon(BookIcon),
-    children: [
-      {
-        type: 'group',
-        label: '人物',
-        key: 'people',
-        children: [
-          {
-            label: '叙事者',
-            key: 'narrator',
-            icon: renderIcon(PersonIcon)
-          },
-          {
-            label: '羊男',
-            key: 'sheep-man',
-            icon: renderIcon(PersonIcon)
-          }
-        ]
-      },
-      {
-        label: '饮品',
-        key: 'beverage',
-        icon: renderIcon(WineIcon),
-        children: [
-          {
-            label: '威士忌',
-            key: 'whisky'
-          }
-        ]
-      },
-      {
-        label: '食物',
-        key: 'food',
-        children: [
-          {
-            label: '三明治',
-            key: 'sandwich'
-          }
-        ]
-      },
-      {
-        label: '过去增多，未来减少',
-        key: 'the-past-increases-the-future-recedes'
-      }
-    ]
-  }
 ]
 </script>
 
@@ -143,7 +87,6 @@ const menuOptions: MenuOption[] = [
               :width="240"
               :collapsed="collapsed"
               show-trigger="arrow-circle"
-
               @collapse="collapsed = true"
               @expand="collapsed = false">
             <n-menu
