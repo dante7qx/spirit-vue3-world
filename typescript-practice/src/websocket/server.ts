@@ -1,5 +1,5 @@
 import WebSocket from "ws"
-import {JsonRpcNotification, JsonRpcRequest, JsonRpcResponse} from "./types"
+import {JsonRpcNotification, JsonRpcRequest, JsonRpcResponse} from "../json-rpc/types"
 
 
 // 错误代码常量
@@ -234,7 +234,7 @@ class JsonRpcWebSocketServer {
   }
 }
 
-
+// 示例：启动服务器、注册方法、广播消息
 if (require.main === module) {
   const server = new JsonRpcWebSocketServer(8000)
 

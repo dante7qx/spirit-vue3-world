@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON-RPC SSE Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .log {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .event-log {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 600px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        input, button, select {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+
+        .connected {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+<h1>JSON-RPC SSE Client</h1>
+
+<div class="container">
+    <div class="panel">
+        <h3>SSE Connection</h3>
+        <div id="connectionStatus" class="status disconnected">
+            Status: Disconnected
+        </div>
+        <button onclick="connectSSE()">Connect</button>
+        <button onclick="disconnectSSE()">Disconnect</button>
+
+        <h4>SSE Events Log</h4>
+        <div id="sseLog" class="log event-log"></div>
+    </div>
+
+    <div class="panel">
+        <h3>JSON-RPC POST Requests</h3>
+
+        <div>
+            <h4>Quick Actions</h4>
+            <button onclick="sendPing()">Ping</button>
+            <button onclick="getTime()">Get Time</button>
+            <button onclick="getConnections()">Get Connections</button>
+        </div>
+
+        <div>
+            <h4>Calculator</h4>
+            <input type="number" id="calcA" placeholder="Number A" value="10">
+            <select id="calcOp">
+                <option value="add">Add</option>
+                <option value="subtract">Subtract</option>
+                <option value="multiply">Multiply</option>
+                <option value="divide">Divide</option>
+            </select>
+            <input type="number" id="calcB" placeholder="Number B" value="5">
+            <button onclick="calculate()">Calculate</button>
+        </div>
+
+        <div>
+            <h4>Custom Request</h4>
+            <input type="text" id="customMethod" placeholder="Method name" value="echo">
+            <input type="text" id="customParams" placeholder="Params (JSON)" value='{"message": "Hello"}'>
+            <button onclick="sendCustomRequest()">Send</button>
+        </div>
+
+        <div>
+            <h4>Broadcast Message</h4>
+            <input type="text" id="broadcastMessage" placeholder="Message" value="Hello everyone!">
+            <button onclick="sendBroadcast()">Broadcast</button>
+        </div>
+
+        <h4>RPC Response Log</h4>
+        <div id="rpcLog" class="log"></div>
+    </div>
+</div>
+
+<script>
+  let eventSource = null;
+  let requestId = 1;
+
+  // SSE连接管理
+  function connectSSE() {
+    if (eventSource) {
+      eventSource.close();
+    }
+
+    eventSource = new EventSource('http://localhost:8200/events');
+
+    eventSource.onopen = function () {
+      updateConnectionStatus(true);
+      logSSE('SSE connection opened');
+    };
+
+    eventSource.onerror = function (error) {
+      updateConnectionStatus(false);
+      logSSE('SSE connection error: ' + JSON.stringify(error));
+    };
+
+    eventSource.addEventListener('connected', function (event) {
+      const data = JSON.parse(event.data);
+      logSSE('Connected: ' + JSON.stringify(data));
+    });
+
+    eventSource.addEventListener('ping', function (event) {
+      const data = JSON.parse(event.data);
+      logSSE('Ping: ' + JSON.stringify(data));
+    });
+
+    eventSource.addEventListener('jsonrpc-response', function (event) {
+      const data = JSON.parse(event.data);
+      logRPC('SSE Response: ' + JSON.stringify(data, null, 2));
+    });
+
+    eventSource.addEventListener('jsonrpc-notification', function (event) {
+      const data = JSON.parse(event.data);
+      logSSE('Notification: ' + JSON.stringify(data, null, 2));
+    });
+
+    eventSource.addEventListener('broadcast', function (event) {
+      const data = JSON.parse(event.data);
+      logSSE('Broadcast: ' + JSON.stringify(data));
+    });
+
+    eventSource.addEventListener('serverTime', function (event) {
+      const data = JSON.parse(event.data);
+      logSSE('Server Time: ' + new Date(data.timestamp).toLocaleString());
+    });
+  }
+
+  function disconnectSSE() {
+    if (eventSource) {
+      eventSource.close();
+      eventSource = null;
+      updateConnectionStatus(false);
+      logSSE('SSE connection closed');
+    }
+  }
+
+  function updateConnectionStatus(connected) {
+    const statusEl = document.getElementById('connectionStatus');
+    statusEl.textContent = 'Status: ' + (connected ? 'Connected' : 'Disconnected');
+    statusEl.className = 'status ' + (connected ? 'connected' : 'disconnected');
+  }
+
+  // 日志记录
+  function logSSE(message) {
+    const log = document.getElementById('sseLog');
+    const time = new Date().toLocaleTimeString();
+    log.innerHTML += `[${time}] ${message} <br>`;
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function logRPC(message) {
+    const log = document.getElementById('rpcLog');
+    const time = new Date().toLocaleTimeString();
+    log.innerHTML += `[${time}] ${message} <br>`;
+    log.scrollTop = log.scrollHeight;
+  }
+
+  // JSON-RPC请求发送
+  async function sendJSONRPCRequest(method, params = undefined) {
+    const request = {
+      jsonrpc: '2.0',
+      method: method,
+      id: requestId++
+    };
+
+    if (params !== undefined) {
+      request.params = params;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8200/jsonrpc', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request)
+      });
+
+      const result = await response.json();
+      logRPC('Request: ' + JSON.stringify(request, null, 2));
+      logRPC('Response: ' + JSON.stringify(result, null, 2));
+      return result;
+    } catch (error) {
+      logRPC('Error: ' + error.message);
+      throw error;
+    }
+  }
+
+  // 快速操作
+  function sendPing() {
+    sendJSONRPCRequest('ping');
+  }
+
+  function getTime() {
+    sendJSONRPCRequest('getCurrentTime');
+  }
+
+  function getConnections() {
+    sendJSONRPCRequest('getConnections');
+  }
+
+  function calculate() {
+    const a = parseFloat(document.getElementById('calcA').value);
+    const b = parseFloat(document.getElementById('calcB').value);
+    const operation = document.getElementById('calcOp').value;
+
+    sendJSONRPCRequest('calculate', {operation, a, b});
+  }
+
+  function sendCustomRequest() {
+    const method = document.getElementById('customMethod').value;
+    const paramsStr = document.getElementById('customParams').value;
+
+    try {
+      const params = paramsStr.trim() ? JSON.parse(paramsStr) : undefined;
+      sendJSONRPCRequest(method, params);
+    } catch (error) {
+      logRPC('Invalid JSON params: ' + error.message);
+    }
+  }
+
+  function sendBroadcast() {
+    const message = document.getElementById('broadcastMessage').value;
+    sendJSONRPCRequest('broadcast', {message});
+  }
+
+  // 页面加载时自动连接
+  window.onload = function () {
+    connectSSE();
+  };
+
+  // 页面卸载时断开连接
+  window.onbeforeunload = function () {
+    disconnectSSE();
+  };
+</script>
+</body>
+</html>

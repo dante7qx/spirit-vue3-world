@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events'
 import WebSocket from 'ws'
-import {JsonRpcNotification, JsonRpcRequest, JsonRpcResponse, PendingRequest} from "./types"
+import {JsonRpcNotification, JsonRpcRequest, JsonRpcResponse, PendingRequest} from "../json-rpc/types"
 
 class JsonRpcWebSocketClient extends EventEmitter {
   private ws: WebSocket | null = null
