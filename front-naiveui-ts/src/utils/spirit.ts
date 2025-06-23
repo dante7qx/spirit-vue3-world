@@ -41,4 +41,11 @@ export const currentLocale = computed(() => locale.value)
 export const currentDateLocale = computed(() => dateLocale.value)
 
 
+/**
+ * 消息提示工具方法
+ */
+import { createDiscreteApi } from 'naive-ui'
+const { message } = createDiscreteApi(['message'])
+export default message
+
 

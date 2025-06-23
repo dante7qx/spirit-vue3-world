@@ -8,7 +8,7 @@ import {
   WineOutline as WineIcon, Apps
 } from '@vicons/ionicons5'
 import {RouterLink} from "vue-router"
-import ToggleTheme from "@/views/layout/ToggleTheme.vue";
+import ToggleTheme from "@/views/layout/ToggleTheme.vue"
 
 // 侧边栏折叠状态
 const collapsed = ref(false)
@@ -36,7 +36,14 @@ const menuOptions: MenuOption[] = [
     icon: renderIcon(WineIcon),
     children: [
       {
-        label: '数据源',
+        label: () =>
+            h(
+                RouterLink,
+                {
+                  to: { name: 'DBConfig' }
+                },
+                { default: () => '数据源' }
+            ),
         key: 'rat',
         icon: renderIcon(Apps)
       }

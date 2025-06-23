@@ -8,13 +8,15 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    DBConfig: typeof import('./views/gencode/DBConfig.vue')['default']
     HeaderLogo: typeof import('./views/layout/HeaderLogo.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    Index: typeof import('./views/home/Index.vue')['default']
+    Index: typeof import('./views/gencode/Index.vue')['default']
     Layout: typeof import('./views/layout/Layout.vue')['default']
     NAnchorLink: typeof import('naive-ui')['NAnchorLink']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDataTable: typeof import('naive-ui')['NDataTable']
     NDatePicker: typeof import('naive-ui')['NDatePicker']
     NFlex: typeof import('naive-ui')['NFlex']
     NForm: typeof import('naive-ui')['NForm']
@@ -30,6 +32,7 @@ declare module 'vue' {
     NQrCode: typeof import('naive-ui')['NQrCode']
     NSpace: typeof import('naive-ui')['NSpace']
     NSwitch: typeof import('naive-ui')['NSwitch']
+    NTable: typeof import('naive-ui')['NTable']
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']
     NText: typeof import('naive-ui')['NText']

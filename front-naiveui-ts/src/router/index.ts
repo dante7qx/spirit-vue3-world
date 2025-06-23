@@ -11,6 +11,26 @@ export const routes: RouteRecordRaw[] = [
       icon: 'Sunny'
     },
   },
+  {
+    path: '/gencode',
+    name: 'GenCode',
+    // component: () => import('@/views/gencode/Index.vue'),
+    meta: {
+      title: '代码生成器',
+      icon: 'Code'
+    },
+    children: [
+      {
+        path: 'db',
+        name: 'DBConfig',
+        component: () => import('@/views/gencode/DBConfig.vue'),
+        meta: {
+          title: '数据源配置',
+          icon: 'Code'
+        },
+      },
+    ]
+  },
 ]
 
 const router = createRouter({

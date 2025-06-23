@@ -33,8 +33,8 @@ pnpm add @vicons/ionicons5
 pnpm add vue-router@4
 # 状态管理
 pnpm add pinia
-# http 请求
-pnpm add axios
+# http 请求, https://alova.js.org/zh-CN
+pnpm add alova
 # 类型声明
 pnpm add -D @types/node
 ```

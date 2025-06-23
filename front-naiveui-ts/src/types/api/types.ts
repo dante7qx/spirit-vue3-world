@@ -19,6 +19,6 @@ export interface PageInfo {
 /**
  * 统一 Ajax 请求结果类型
  */
-export interface AjaxResult<T> {
+export interface AjaxResult<T = any> {
   data: T
 }
